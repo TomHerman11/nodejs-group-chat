@@ -1,0 +1,26 @@
+{
+  "name": "nodejs-workshop-chat",
+  "version": "1.0.0",
+  "description": "Creating a chat room as part of our Node.js Workshop",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0",
+    "ejs": "^2.7.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomHerman11/nodejs-workshop-chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomHerman11/nodejs-workshop-chat/issues"
+  },
+  "homepage": "https://github.com/TomHerman11/nodejs-workshop-chat#readme"
+}
