@@ -8,4 +8,6 @@ Creating a chat room as part of our Node.js Workshop
 
 **Socket.io** - Socket.io is the key module in this tutorial which enables the realtime communication between the clients and the server.  
 
-**EJS** - EJS (Embedded JavaScript) is a simple templating language that lets you generate HTML markup for your front-end.
+## Credits
+**This exercise is based on the example supplied by socket.io:**  
+ https://github.com/socketio/chat-example
