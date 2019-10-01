@@ -64,6 +64,9 @@ Creating a chat room as part of our Node.js Workshop
 <br/>
 
  ## Further Ideas
+ - Show the username to the user (without sending a message).
+ - Add a time stamp to each message.
+ - Show online users.
  - CSS: set a maximum width for each message.
  - Disable the option of sending an empty message.
  - Delete a message:
