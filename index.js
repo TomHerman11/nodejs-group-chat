@@ -31,7 +31,7 @@ app.use('/static', express.static(path.join(__dirname, 'static')))
 //socket.io:
 io.on('connection', function (socket) {
   socket.on('chat message client -> server', function (msg) {
-    io.emit('chat message server -> client', msg);
+    io.emit('chat message server -> client', "<li>" + msg + "</li>");
   });
 });
 

@@ -26,7 +26,7 @@ $(function () {
 
     //on socket event of "chat message server -> client", do the following: (add the value to the messages list)
     socket.on('chat message server -> client', function (msg) {
-        $('#messages').append($('<li>').text(msg));
+        $('#messages').append(msg);
         window.scrollTo(0, document.body.scrollHeight);
     });
 });
