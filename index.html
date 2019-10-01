@@ -63,17 +63,19 @@
   </form>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="/static/hello_world.js"></script>
   <script>
     $(function () {
       var socket = io();
       $('form').submit(function () {
-        socket.emit('chat message', $('#m').val());
+        //emit a message that will go to the server
+        socket.emit('chat message client -> server', $('#m').val());
         $('#m').val('');
         return false;
       });
 
       //on socket event of "chat message", do the following: (add the value to the messages list)
-      socket.on('chat message', function (msg) {
+      socket.on('chat message server -> client', function (msg) {
         $('#messages').append($('<li>').text(msg));
         window.scrollTo(0, document.body.scrollHeight);
       });
