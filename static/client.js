@@ -14,6 +14,22 @@
 $(function () {
     var socket = io();
 
+    //ask the user for their name, "anonymous" function:
+    (function () {
+        let username;
+        username = prompt("Please enter your username", "El Professor");
+        if (!username) {
+            username = "Anonymous_User";
+        }
+
+        let color;
+        color = prompt("Please enter your color", "Blue");
+
+        //Let the socket "know" the value of the username. Each client will have their own username and color.
+        socket.emit('username client -> server', [username, color]);
+    })();
+
+
     //add to our form a submit attribue (with the following function):
     $('form').submit(function () {
         //emit a message that will go to the server
@@ -29,4 +45,5 @@ $(function () {
         $('#messages').append(msg);
         window.scrollTo(0, document.body.scrollHeight);
     });
+
 });

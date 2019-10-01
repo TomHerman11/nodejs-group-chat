@@ -21,7 +21,7 @@ Creating a chat room as part of our Node.js Workshop
 #### Support User Names
 ![Support User Names Result](./README_resources/insert_user_name_colored.png)
 
-1. Edit client_index.js:
+1. Edit client.js:
    - Implement a way to get the user's name, by pop-up of any other method. You can use promt() function.
    - Make sure that the username variable has a default value (not empty).
    - Emit the username's value, through the socket, to the server:
@@ -29,19 +29,42 @@ Creating a chat room as part of our Node.js Workshop
       > socket.emit('username client -> server', username)
       > ```
 
-2. Edit server_index.js:
-   - handle the event of 'username_event_to_server' and add to the socket a new property:
+2. Edit server.js:
+   - handle the event of ```'username client -> server'``` and add to the socket a new property:
    > ```javascript
    > socket.on('username client -> server', function (username) {
    >  socket.username = username;
    > });
    > ```
    
-   - Use this 'username' property when sending the chat message back to the client.
+   - Use this ```username``` property when sending the chat message back to the client.
+
+3. **BONUS**: Implement a way so each user will have their own color (use random / array of colors).
+
+<br/>
+
+#### Present to the user their username
+1. Edit index.html:
+   - Add to the header at index.html a new div:
+   > ```html
+   > <div id=logged_as_info></div>
+   > ``` 
+   - This div will present to the user their username.
+   - You can add css properties or inline style to this div.
+
+2. Edit server.js: 
+   - When recieving the ```'username client -> server'``` event in the server, emit an event to the client with the info we want to represent inside the newly created div.
+
+3. Edit client.js:
+   - Handle the event that was sent from server.
+   - Using jQuery, edit the info inside the newly created div to contain the information we just sent from the server.
+   - Use appending a message as an example.
+
 
 <br/>
 
  ## Further Ideas
+ - CSS: set a maximum width for each message.
  - Disable the option of sending an empty message.
  - Delete a message:
     - Add a button to each message in order to delete it.

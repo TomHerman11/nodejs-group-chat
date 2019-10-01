@@ -47,3 +47,11 @@
   #messages {
     margin-bottom: 40px
   }
+
+  #nodejs_workshop_chat {
+    height: 45px;
+    background:#eee;
+    text-align:center;
+    font-size:18px;
+  }
+  
