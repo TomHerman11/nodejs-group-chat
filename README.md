@@ -28,4 +28,5 @@ Creating a chat room as part of our Node.js Workshop
  - Use a DB:
     - So messages will be saved even when the server shuts down
     - Can use a Node.Js package called 'MongoDB'.
-    
+- Improve styling:
+   - You can use functions of jQuery UI: Start with https://www.w3schools.com/jquery/jquery_slide.asp and continue from there.
