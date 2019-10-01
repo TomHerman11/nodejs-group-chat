@@ -12,11 +12,15 @@ Creating a chat room as part of our Node.js Workshop
 **This exercise is based on the example supplied by socket.io:**  
  https://github.com/socketio/chat-example
 
-## The Exercise - Support User Names
+## The Exercises
+#### Support User Names
 1. Add a new javascript file to 'static' folder called "insert_user_name.js"
 2. Add a script section in 'index.html', above the script of 'add_message_to_chat', using the file you just created as the source.
-3. In insert_user_name.js implement a way to ask the user for their name. Use add_message_to_chat.js as a template.
-
+3. In insert_user_name.js:
+   - Define a global variable that will store the username's value.
+   - Implement a way to ask the user for their name (can use prompt() function).
+   - Make sure the user's name is used whenever & wherever adding a new message.
+   - Optional: render the username with a color (out of predefined colors / random).
 
 
  ## Further Ideas
