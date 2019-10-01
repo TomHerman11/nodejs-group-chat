@@ -5,6 +5,12 @@
   <title>Socket.IO chat</title>
   <!-- Note that the index.css file is available by using 'express.static' function in index.js -->
   <link rel="stylesheet" type="text/css" href="static/index.css">
+
+  <!-- Load javascript codes -->
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script id=static_src_example src="/static/hello_world.js"></script>
+
 </head>
 
 <body>
@@ -12,9 +18,6 @@
   <form action="">
     <input id="message_form" autocomplete="off" /><button>Send</button>
   </form>
-  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-  <script id=static_src_example src="/static/hello_world.js"></script>
 
   <!-- Note: id and javascript file does NOT necessarily need to have the same value/name -->
   <script id=add_message_to_chat src="/static/add_message_to_chat.js"></script>

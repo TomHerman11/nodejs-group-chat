@@ -20,6 +20,7 @@ Creating a chat room as part of our Node.js Workshop
 
 
  ## Further Ideas
+ - Disable the option of sending an empty message.
  - Delete a message:
     - Add a button to each message in order to delete it.
  - Like a message:
