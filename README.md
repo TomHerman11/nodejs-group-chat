@@ -2,28 +2,44 @@
 ## Description
 Creating a chat room as part of our Node.js Workshop
 
+<br/>
 
 ## About the Node modules:
 **[Express](https://expressjs.com)** - Express is lightweight web application framework for Node.js. For this simple group chat, it is not necessary to use Express, but if you are planning to continue the development, this is nice to have.  
 
 **[Socket.io](https://socket.io)** - Socket.io is the key module in this tutorial which enables the realtime communication between the clients and the server.  
 
+<br/>
+
 ## Credits
 **This exercise is based on the example supplied by socket.io:**  
  https://github.com/socketio/chat-example
+
+<br/>
 
 ## The Exercises
 #### Support User Names
 ![Support User Names Result](./README_resources/insert_user_name_colored.png)
 
-1. Add a new javascript file to 'static' folder called "insert_user_name.js"
-2. Add a script section in 'index.html', above the script of 'add_message_to_chat', using the file you just created as the source.
-3. In insert_user_name.js:
-   - Define a global variable that will store the username's value.
-   - Implement a way to ask the user for their name (can use prompt() function).
-   - Make sure the user's name is used whenever & wherever adding a new message.
-   - Optional: render the username with a color (out of predefined colors / random).
+1. Edit client_index.js:
+   - Implement a way to get the user's name, by pop-up of any other method. You can use promt() function.
+   - Make sure that the username variable has a default value (not empty).
+   - Emit the username's value, through the socket, to the server:
+      > ```javascript
+      > socket.emit('username client -> server', username)
+      > ```
 
+2. Edit server_index.js:
+   - handle the event of 'username_event_to_server' and add to the socket a new property:
+   > ```javascript
+   > socket.on('username client -> server', function (username) {
+   >  socket.username = username;
+   > });
+   > ```
+   
+   - Use this 'username' property when sending the chat message back to the client.
+
+<br/>
 
  ## Further Ideas
  - Disable the option of sending an empty message.
