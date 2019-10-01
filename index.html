@@ -59,18 +59,31 @@
 <body>
   <ul id="messages"></ul>
   <form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
+    <input id="message_form" autocomplete="off" /><button>Send</button>
   </form>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="/static/hello_world.js"></script>
   <script>
+    /*
+     * Using $ as Jquery - catch html items in order to add attributes / read their values
+     * $('#abc') - catch html item by id=abc
+     * $('.abc') - catch html item by class=abc
+    */
+
+    /* $(function() {...}) - SHORT FOR 'The Document Ready Event':
+     * $(document).ready(function() { ... });
+     * This is to prevent any jQuery code from running before the document is finished loading (is ready).
+     * `From: https://www.w3schools.com/jquery/jquery_syntax.asp
+     */
     $(function () {
       var socket = io();
       $('form').submit(function () {
         //emit a message that will go to the server
-        socket.emit('chat message client -> server', $('#m').val());
-        $('#m').val('');
+        socket.emit('chat message client -> server', $('#message_form').val());
+
+        //make message box blank again:
+        $('#message_form').val('');
         return false;
       });
 

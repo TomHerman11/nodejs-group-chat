@@ -8,23 +8,23 @@ const path = require('path');
 //port can be set manually using the command line, for example "env PORT=8888 node index.js"
 const port = process.env.PORT || 3000;
 
-/** DEFINE ROUTES OF OUR SERVER: **/
+/* DEFINE ROUTES OF OUR SERVER: */
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-/**
+/*
  * may define more routes such as:
  * app.get('/saved_messages', function (req, res) {
  *   res.sendFile(__dirname + '/COMPLETE_THIS!.html');
  * });
-**/
+*/
 
-/**
+/*
  * enable using local files, stored in static folder, use this in index.html as:
  * 
  * <script src="/static/hello_world.js"></script>
-**/
+*/
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 
