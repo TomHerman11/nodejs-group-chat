@@ -15,11 +15,12 @@ Creating a chat room as part of our Node.js Workshop
 ## The Exercise - Support User Names
 1. Add a new javascript file to 'static' folder called "insert_user_name.js"
 2. Add a script section in 'index.html', above the script of 'add_message_to_chat', using the file you just created as the source.
-3. In insert_user_name.js implement a way to ask the user for their name. Use add_message_to_chat.js as a template.
+3. In insert_user_name.js implement a way to ask the user for their name (can use prompt() function). Use add_message_to_chat.js as a template.
 
 
 
  ## Further Ideas
+ - Disable the option of sending an empty message.
  - Delete a message:
     - Add a button to each message in order to delete it.
  - Like a message:
