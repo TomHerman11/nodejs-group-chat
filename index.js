@@ -25,7 +25,7 @@ app.get('/', function (req, res) {
  * 
  * <script src="/static/hello_world.js"></script>
 */
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'static')))
 
 
 //socket.io:

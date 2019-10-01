@@ -29,4 +29,6 @@ Creating a chat room as part of our Node.js Workshop
     - So messages will be saved even when the server shuts down
     - Can use a Node.Js package called 'MongoDB'.
 - Improve styling:
+   - Each user will have their own color.
    - You can use functions of jQuery UI: Start with https://www.w3schools.com/jquery/jquery_slide.asp and continue from there.
+- Verify that each user has a unique name.
