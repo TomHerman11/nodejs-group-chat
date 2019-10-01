@@ -14,6 +14,8 @@ Creating a chat room as part of our Node.js Workshop
 
 ## The Exercises
 #### Support User Names
+![Support User Names Result](./README_resources/insert_user_name_colored.png)
+
 1. Add a new javascript file to 'static' folder called "insert_user_name.js"
 2. Add a script section in 'index.html', above the script of 'add_message_to_chat', using the file you just created as the source.
 3. In insert_user_name.js:
