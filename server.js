@@ -36,6 +36,9 @@ io.on('connection', function (socket) {
   socket.on('usernameAndColor', function (usernameAndColor) {
     socket.username = usernameAndColor[0];
     socket.username_color = usernameAndColor[1];
+
+    //let all users know that this user has connected:
+    io.emit('userConnected', socket.username);
   });
 
   socket.on('addChatMessage(client->server)', function (msg) {
