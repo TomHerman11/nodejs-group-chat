@@ -12,38 +12,37 @@
  * From: https://www.w3schools.com/jquery/jquery_syntax.asp
  */
 $(function () {
-    var socket = io();
+    var client_socket = io();
 
-    //ask the user for their name, "anonymous" function:
+    //ask the user for their name and preferred color:
     (function () {
-        let username;
-        username = prompt("Please enter your username", "El Professor");
-        if (!username) {
-            username = "Anonymous_User";
-        }
+        let username = prompt("Please enter your username", "El Professor");
+        if (!username) { username = "Anonymous_User"; }
 
-        let color;
-        color = prompt("Please enter your color", "Blue");
+        let color = prompt("Please enter your color", "Blue");
+        if (!color) { color = "Black"; }
 
         //Let the socket "know" the value of the username. Each client will have their own username and color.
-        socket.emit('username client -> server', [username, color]);
+        client_socket.emit('usernameAndColor', [username, color]);
+
+        //Let the user see their nickname:
+        $("#logged_as_info").append(`Logged as: <strong style="color:` + color + `">` + username + `</strong>`);
     })();
 
 
     //add to our form a submit attribue (with the following function):
     $('form').submit(function () {
         //emit a message that will go to the server
-        socket.emit('chat message client -> server', $('#message_form').val());
+        client_socket.emit('addChatMessage(client->server)', $('#message_form').val());
 
         //make message box blank again:
         $('#message_form').val('');
         return false;
     });
 
-    //on socket event of "chat message server -> client", do the following: (add the value to the messages list)
-    socket.on('chat message server -> client', function (msg) {
+    //on socket event of "addChatMessage(server->client)", do the following: (add the value to the messages list)
+    client_socket.on('addChatMessage(server->client)', function (msg) {
         $('#messages').append(msg);
         window.scrollTo(0, document.body.scrollHeight);
     });
-
 });

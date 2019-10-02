@@ -17,48 +17,45 @@ Creating a chat room as part of our Node.js Workshop
 
 <br/>
 
-## The Exercises
-#### Support User Names
-![Support User Names Result](./README_resources/insert_user_name_colored.png)
-
-1. Edit client.js:
-   - Implement a way to get the user's name, by pop-up of any other method. You can use promt() function.
-   - Make sure that the username variable has a default value (not empty).
-   - Emit the username's value, through the socket, to the server:
-      > ```javascript
-      > socket.emit('username client -> server', username)
-      > ```
-
-2. Edit server.js:
-   - handle the event of ```'username client -> server'``` and add to the socket a new property:
-   > ```javascript
-   > socket.on('username client -> server', function (username) {
-   >  socket.username = username;
-   > });
-   > ```
-   
-   - Use this ```username``` property when sending the chat message back to the client.
-
-3. **BONUS**: Implement a way so each user will have their own color (use random / array of colors).
-
-<br/>
-
+## The Exercises - Support User names
 #### Present to the user their username
 1. Edit index.html:
    - Add to the header at index.html a new div:
    > ```html
    > <div id=logged_as_info></div>
    > ``` 
-   - This div will present to the user their username.
+   - This div will eventually present to the user their username.
    - You can add css properties or inline style to this div.
 
-2. Edit server.js: 
-   - When recieving the ```'username client -> server'``` event in the server, emit an event to the client with the info we want to represent inside the newly created div.
+2. Edit client.js:
+   - Implement a way to get the user's name, by pop-up of any other method. You can use promt() function.
+   - Make sure that the username variable has a default value (not empty).
+   - Using jQuery, edit the info inside the newly created div (with ```id=logged_as_info```) to contain the information we just recieved from the user.
+      - For an example, look at how we append a message to the chat.
 
-3. Edit client.js:
-   - Handle the event that was sent from server.
-   - Using jQuery, edit the info inside the newly created div to contain the information we just sent from the server.
-   - Use appending a message as an example.
+
+#### Support User Names Within Chat
+![Support User Names Result](./README_resources/insert_user_name_colored.png)
+1. Edit client.js:
+   - After we recieved the username from the user, and changed the div with ```id=logged_as_info```, we would like to add another property to our socket in the **server** side. Why the server side? so each time we will send a new message in our chat, we want to show all of the users who was the username that sent the message.
+   
+   In order to do that, emit a new event from the client to the server:
+   > ```javascript
+   > client_socket.emit('username', username);
+   > ```
+   
+2. Edit Server.js:
+   - handle the event of ```'username``` and add to the socket a new property:
+   > ```javascript
+   > socket.on('username', function (username) {
+   >  socket.username = username; //can also use: socket.coco = username;
+   > });
+   > ```
+   
+   - Use this ```username``` property when sending a chat message to all of the client (using ```io.emit(...,...)```).
+
+3. **BONUS**: Implement a way so each user will have their own color (use random / array of colors).
+
 
 
 <br/>
@@ -66,7 +63,9 @@ Creating a chat room as part of our Node.js Workshop
  ## Further Ideas
  - Show the username to the user (without sending a message).
  - Add a time stamp to each message.
+ - Notify when a user logs in or logs out.
  - Show online users.
+ - Add “{user} is typing” functionality.
  - CSS: set a maximum width for each message.
  - Disable the option of sending an empty message.
  - Delete a message:

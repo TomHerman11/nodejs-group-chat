@@ -8,7 +8,7 @@ const path = require('path');
 //port can be set manually using the command line, for example "env PORT=8888 node index.js"
 const port = process.env.PORT || 3000;
 
-/* DEFINE ROUTES OF OUR SERVER: */
+/* DEFINE PATHES OF OUR SERVER: */
 app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
@@ -30,13 +30,17 @@ app.use('/static', express.static(path.join(__dirname, 'static')))
 
 //socket.io:
 io.on('connection', function (socket) {
-  socket.on('username client -> server', function (usernameAndColor) {
+  //each socket is unique to each client that connects:
+  console.log("socket.id: " + socket.id);
+
+  socket.on('usernameAndColor', function (usernameAndColor) {
     socket.username = usernameAndColor[0];
     socket.username_color = usernameAndColor[1];
   });
 
-  socket.on('chat message client -> server', function (msg) {
-    io.emit('chat message server -> client', '<li><strong style="color:' + socket.username_color + '">' + socket.username + "</strong>: " + msg + "</li>");
+  socket.on('addChatMessage(client->server)', function (msg) {
+    //io.emit(..., ...); - sending the message to all of the sockets.
+    io.emit('addChatMessage(server->client)', '<li><strong style="color:' + socket.username_color + '">' + socket.username + "</strong>: " + msg + "</li>");
   });
 });
 
