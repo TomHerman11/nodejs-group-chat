@@ -43,7 +43,11 @@ io.on('connection', function (socket) {
 
   socket.on('addChatMessage(client->server)', function (msg) {
     //io.emit(..., ...); - sending the message to all of the sockets.
-    io.emit('addChatMessage(server->client)', '<li><strong style="color:' + socket.username_color + '">' + socket.username + "</strong>: " + msg + "</li>");
+    io.emit('addChatMessage(server->client)', prepareMessageToClients(socket, msg));
+  });
+
+  socket.on('disconnect', function () {
+    io.emit('userDisconnected', socket.username);
   });
 });
 
@@ -52,3 +56,21 @@ io.on('connection', function (socket) {
 http.listen(port, function () {
   console.log('listening on localhost:' + port);
 });
+
+// -------------------------------------------------
+function getParsedTime() {
+  const date = new Date();
+
+  let hour = date.getHours();
+  hour = (hour < 10 ? "0" : "") + hour;
+
+  let min = date.getMinutes();
+  min = (min < 10 ? "0" : "") + min;
+
+  return (hour + ":" + min);
+}
+
+// Prepate the message that will be sent to all of the clients
+function prepareMessageToClients(socket, msg) {
+  return ('<li>' + getParsedTime() + ' <strong style="color:' + socket.username_color + '">' + socket.username + '</strong>: ' + msg + '</li>');
+}

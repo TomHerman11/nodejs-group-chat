@@ -30,15 +30,31 @@ $(function () {
     })();
 
     socket.on('userConnected', (usernameThatJustConnected) => { //() => {} is a nameless function    
-        const notification_id = usernameThatJustConnected.replace(/\s/g, "") + '_joined_the_chat';
-        $('#username_has_connected').append(`<li id=` + notification_id + `>❣️ <strong>` + usernameThatJustConnected + `</strong> has joined the chat!</li>`);
+        const notification_id = usernameThatJustConnected.replace(/\s/g, "") + '_joined_the_chat'; //remove white spaces from username FOR THE ID, if there's any
+        const join_log = `<li id=` + notification_id + `>❣️ <strong>` + usernameThatJustConnected + `</strong> has joined the chat!</li>`;
+        $('#logs_board').append(join_log);
 
-        //after 5 seconds, remove the notification:
+        //after 10 seconds, remove the notification:
         setTimeout((id) => {
-            $('#' + id).remove();
-        }, 5000, notification_id);
+            $('#logs_board').children('#' + id).remove();
+        }, 10000, notification_id);
 
     })
+
+    socket.on('userDisconnected', (usernameThatJustDisonnected) => { //() => {} is a nameless function    
+        const notification_id = usernameThatJustDisonnected.replace(/\s/g, "") + '_left_the_chat'; //remove white spaces from username FOR THE ID, if there's any
+        const left_log = `<li id=` + notification_id + `>🙃 <strong>` + usernameThatJustDisonnected + `</strong> has left the chat!</li>`;
+        $('#logs_board').append(left_log);
+
+        //after 10 seconds, remove the notification:
+        setTimeout((id) => {
+            $('#logs_board').children('#' + id).remove();
+        }, 10000, notification_id);
+
+    })
+
+
+
 
     //add to our form a submit attribue (with the following function):
     $('form').submit(function () {
