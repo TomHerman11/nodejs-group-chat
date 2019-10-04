@@ -10,6 +10,7 @@
     <div id=num_users_online_number> </div>
   </div>
   <ul id=logs_board></ul>
+  <ul id=username_is_typing_board>Who's typing:</ul>
 
   <!-- Note that the index.css file is available by using 'express.static' function in server.js -->
   <link rel="stylesheet" type="text/css" href="static/index.css">
@@ -24,7 +25,7 @@
 <body>
   <ul id="messages"></ul>
   <form action="">
-    <input id="message_form" autocomplete="off" autofocus="autofocus" /><button>Send</button>
+    <input id="message_form_input" autocomplete="off" autofocus="autofocus" /><button>Send</button>
   </form>
 
   <script id=client_script src="/static/client.js"></script>

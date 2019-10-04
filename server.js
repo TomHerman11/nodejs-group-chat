@@ -45,9 +45,21 @@ io.on('connection', function (socket) {
     io.emit('userConnected', socket.username);
   });
 
+  //handle adding a message to the chat.
   socket.on('addChatMessage(client->server)', function (msg) {
     //io.emit(..., ...); - sending the message to all of the sockets.
-    io.emit('addChatMessage(server->client)', prepareMessageToClients(socket, msg));
+    io.emit('addChatMessage(server->clients)', prepareMessageToClients(socket, msg));
+  });
+
+  //handle isTyping feature
+  //istyping - key down
+  socket.on('userIsTypingKeyDown(client->server)', function (undefined) {
+    io.emit('userIsTypingKeyDown(server->clients)', [socket.username, prepareIsTypingToClients(socket)]);
+  });
+
+  //istyping - key up
+  socket.on('userIsTypingKeyUp(client->server)', function (undefined) {
+    io.emit('userIsTypingKeyUp(server->clients)', socket.username);
   });
 
   socket.on('disconnect', function () {
@@ -75,9 +87,13 @@ function getParsedTime() {
   return (hour + ":" + min);
 }
 
-// Prepate the message that will be sent to all of the clients
+// Prepare the message that will be sent to all of the clients
 function prepareMessageToClients(socket, msg) {
   return ('<li>' + getParsedTime() + ' <strong style="color:' + socket.username_color + '">' + socket.username + '</strong>: ' + msg + '</li>');
 }
 
-//
+//prepare the '___ is typing...' message
+function prepareIsTypingToClients(socket) {
+  return ('<li><strong>' + socket.username + '</strong> is typing...</li>')
+}
+
