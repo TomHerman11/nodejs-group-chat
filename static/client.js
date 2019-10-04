@@ -32,38 +32,49 @@ $(function () {
     socket.on('userConnected', (usernameThatJustConnected) => { //() => {} is a nameless function    
         const notification_id = usernameThatJustConnected.replace(/\s/g, "") + '_joined_the_chat'; //remove white spaces from username FOR THE ID, if there's any
         const join_log = `<li id=` + notification_id + `>❣️ <strong>` + usernameThatJustConnected + `</strong> has joined the chat!</li>`;
+
+        //update the logs board:
         $('#logs_board').append(join_log);
 
         //after 10 seconds, remove the notification:
         setTimeout((id) => {
             $('#logs_board').children('#' + id).remove();
         }, 10000, notification_id);
-
-    })
+    });
 
     socket.on('userDisconnected', (usernameThatJustDisonnected) => { //() => {} is a nameless function    
         const notification_id = usernameThatJustDisonnected.replace(/\s/g, "") + '_left_the_chat'; //remove white spaces from username FOR THE ID, if there's any
         const left_log = `<li id=` + notification_id + `>🙃 <strong>` + usernameThatJustDisonnected + `</strong> has left the chat!</li>`;
+
+        //update the logs board:
         $('#logs_board').append(left_log);
 
         //after 10 seconds, remove the notification:
         setTimeout((id) => {
             $('#logs_board').children('#' + id).remove();
         }, 10000, notification_id);
+    });
 
-    })
-
+    socket.on('updateNumUsersOnline', (num_users_online) => {
+        $('#num_users_online_number').html(num_users_online);
+    });
 
 
 
     //add to our form a submit attribue (with the following function):
     $('form').submit(function () {
+        //verify that the message is not empty / contains only white spaces:
+        let user_message = ($('#message_form').val()).replace(/\s/g, "");
+        if (user_message === "") {
+            return false; //return false = don't refresh page.
+        }
+
         //emit a message that will go to the server
         socket.emit('addChatMessage(client->server)', $('#message_form').val());
 
         //make message box blank again:
         $('#message_form').val('');
-        return false;
+        return false; //return false = don't refresh page.
     });
 
     //on socket event of "addChatMessage(server->client)", do the following: (add the value to the messages list)

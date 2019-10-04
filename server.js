@@ -7,6 +7,7 @@ const path = require('path');
 
 //port can be set manually using the command line, for example "env PORT=8888 node index.js"
 const port = process.env.PORT || 3000;
+let num_users_online = 0;
 
 /* DEFINE PATHES OF OUR SERVER: */
 app.get('/', function (req, res) {
@@ -33,6 +34,9 @@ io.on('connection', function (socket) {
   //each socket is unique to each client that connects:
   console.log("socket.id: " + socket.id);
 
+  //let the clients know how many online users are there:
+  io.emit('updateNumUsersOnline', ++num_users_online);
+
   socket.on('usernameAndColor', function (usernameAndColor) {
     socket.username = usernameAndColor[0];
     socket.username_color = usernameAndColor[1];
@@ -48,6 +52,7 @@ io.on('connection', function (socket) {
 
   socket.on('disconnect', function () {
     io.emit('userDisconnected', socket.username);
+    io.emit('updateNumUsersOnline', --num_users_online);
   });
 });
 
@@ -74,3 +79,5 @@ function getParsedTime() {
 function prepareMessageToClients(socket, msg) {
   return ('<li>' + getParsedTime() + ' <strong style="color:' + socket.username_color + '">' + socket.username + '</strong>: ' + msg + '</li>');
 }
+
+//
