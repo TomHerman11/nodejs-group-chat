@@ -22,27 +22,27 @@
 
   body {
     padding-top: 64px; /* heading: 16(top) + 16(bottom) + 32(<h1>) */
-    min-height: 100%; /* strech to end of the page */
-
     font: 13px Helvetica, Arial;
-    display: flex; /* display information and messagess left to right */
   }
 
   #general_information_center {
     width: 25%; /* take 25% width from the *left* part of the page */
+    float: left;
     border-right: 1px solid;
+    
+    /* floating */
+    position: fixed;
+    top: 64px;
   }
 
   #messages_center {
-    flex-grow: 1; /* fit the rest of the right part of information center */
+    float: right;
+    width: 75%;
   }
 
   #message_form {
     background: #000;
     padding: 3px;
-    /* position: fixed; */
-    /* bottom: 0; */
-    width: auto;
   }
 
   #message_form > input {

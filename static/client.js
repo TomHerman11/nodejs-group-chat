@@ -105,10 +105,11 @@ $(function () {
     // IS TYPING FEATURE:
     // send to the server 'is typing...' notification
     var typingTimer; //setTimeOut() identifier;
-    var doneTypingInterval = 700;
+    var doneTypingInterval = 1000;
 
     //notify server on keydown
     $('#message_form_input').on("keydown", function (e) {
+        //log 'is typing...' only if the key is printable
         if (isPrintableKey(e)) socket.emit('userIsTypingKeyDown(client->server)', undefined);
     });
 
