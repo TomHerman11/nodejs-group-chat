@@ -65,9 +65,13 @@ Creating a chat room as part of our Node.js Workshop
  - Add a time stamp to each message. ✔
  - Notify when a user logs in or logs out. ✔
  - Show online users. ✔
- - Add “{user} is typing” functionality.
+ - Add “{user} is typing” functionality. ✔
  - CSS: set a maximum width for each message. 
  - Disable the option of sending an empty message. ✔
+ - format message:
+   - **bold** - * bold *
+   - _italic_ - _ italic _
+   - ~~strikethrough~~ - ~ strikethrough ~
  - Delete a message:
     - Add a button to each message in order to delete it.
  - Like a message:

@@ -2,15 +2,12 @@
 <html>
 
 <head>
-  <title>Node.Js Workshop Chat</title>
-  <div id=nodejs_workshop_chat_title>Node.Js Workshop - Chat Exercise</div>
-  <div id=logged_as_info></div>
-  <div id=num_users_online_log>
-    <div id=num_users_online_number_msg>Number of online users</div>
-    <div id=num_users_online_number> </div>
+  <title>Node.js Workshop Chat</title>
+  <link rel="icon" href="/static/favicon_chat.png">
+  <div id=nodejs_workshop_chat_header>
+    <h1 id=title>Node.js Workshop - Chat Exercise</h1>
+
   </div>
-  <ul id=logs_board></ul>
-  <ul id=username_is_typing_board>Who's typing:</ul>
 
   <!-- Note that the index.css file is available by using 'express.static' function in server.js -->
   <link rel="stylesheet" type="text/css" href="static/index.css">
@@ -23,10 +20,22 @@
 </head>
 
 <body>
-  <ul id="messages"></ul>
-  <form action="">
-    <input id="message_form_input" autocomplete="off" autofocus="autofocus" /><button>Send</button>
-  </form>
+  <div id=general_information_center>
+    <div id=logged_as_info></div>
+    <div id=num_users_online_log>
+      <div id=num_users_online_number_msg>Number of online users</div>
+      <div id=num_users_online_number> </div>
+    </div>
+    <ul id=logs_board></ul>
+    <ul id=username_is_typing_board>Who's typing:</ul>
+  </div>
+
+  <div id=messages_center>
+    <ul id="messages"></ul>
+    <form id=message_form action="">
+      <input id="message_form_input" autocomplete="off" autofocus="autofocus" /><button>Send</button>
+    </form>
+  </div>
 
   <script id=client_script src="/static/client.js"></script>
 </body>

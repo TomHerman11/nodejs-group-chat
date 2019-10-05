@@ -1,32 +1,61 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#nodejs_workshop_chat_header {
+    padding: 16px 16px;
+    background: #555;
+    color: #f1f1f1;
+    
+    /* floating header: */
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    /* centered */
+    display: flex;
+    align-items: center; /* vertical */
+    justify-content: center; /* horizonal */
   }
 
   body {
+    padding-top: 64px; /* heading: 16(top) + 16(bottom) + 32(<h1>) */
+    min-height: 100%; /* strech to end of the page */
+
     font: 13px Helvetica, Arial;
+    display: flex; /* display information and messagess left to right */
   }
 
-  form {
+  #general_information_center {
+    width: 25%; /* take 25% width from the *left* part of the page */
+    border-right: 1px solid;
+  }
+
+  #messages_center {
+    flex-grow: 1; /* fit the rest of the right part of information center */
+  }
+
+  #message_form {
     background: #000;
     padding: 3px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    /* position: fixed; */
+    /* bottom: 0; */
+    width: auto;
   }
 
-  form input {
+  #message_form > input {
     border: 0;
     padding: 10px;
     width: 90%;
     margin-right: .5%;
   }
 
-  form button {
-    width: 9%;
+  #message_form > button {
     background: rgb(130, 224, 255);
     border: none;
+    width: 9%;
     padding: 10px;
   }
 
@@ -47,11 +76,3 @@
   #messages {
     margin-bottom: 40px
   }
-
-  #nodejs_workshop_chat {
-    height: 45px;
-    background:#eee;
-    text-align:center;
-    font-size:18px;
-  }
-  

@@ -105,7 +105,7 @@ $(function () {
     // IS TYPING FEATURE:
     // send to the server 'is typing...' notification
     var typingTimer; //setTimeOut() identifier;
-    var doneTypingInterval = 2000;
+    var doneTypingInterval = 700;
 
     //notify server on keydown
     $('#message_form_input').on("keydown", function (e) {
