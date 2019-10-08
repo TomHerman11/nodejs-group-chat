@@ -72,8 +72,13 @@ $(function () {
     });
 
     //on socket event of "addChatMessage(server->clients)", do the following: (add the value to the messages list)
-    socket.on('addChatMessage(server->clients)', function (msg) {
-        $('#messages').append(msg);
+    socket.on('addChatMessage(server->clients)', function (usernameAndMsg) {
+        let username_adding_msg = usernameAndMsg[0];
+        let msg = usernameAndMsg[1];
+        //set different backgroud for the user that sent the message:
+        let bkg = (username_adding_msg === socket.username) ? "#ccebff" : "#ffffff";
+        let msg_with_style = `<div style="background: ` + bkg + `">` + msg + `</div>`;
+        $('#messages').append(msg_with_style);
         window.scrollTo(0, document.body.scrollHeight);
     });
 
