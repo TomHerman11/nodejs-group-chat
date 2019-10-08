@@ -37,9 +37,8 @@ io.on('connection', function (socket) {
   //let the clients know how many online users are there:
   io.emit('updateNumUsersOnline', ++num_users_online);
 
-  socket.on('usernameAndColor', function (usernameAndColor) {
-    socket.username = usernameAndColor[0];
-    socket.username_color = usernameAndColor[1];
+  socket.on('username', function (username_from_client) {
+    socket.username = username_from_client;
 
     //let all users know that this user has connected:
     io.emit('userConnected', socket.username);
@@ -89,7 +88,7 @@ function getParsedTime() {
 
 // Prepare the message that will be sent to all of the clients
 function prepareMessageToClients(socket, msg) {
-  return ('<li>' + getParsedTime() + ' <strong style="color:' + socket.username_color + '">' + socket.username + '</strong>: ' + msg + '</li>');
+  return ('<li>' + getParsedTime() + ' <strong>' + socket.username + '</strong>: ' + msg + '</li>');
 }
 
 //prepare the '___ is typing...' message

@@ -2,11 +2,11 @@
 <html>
 
 <head>
-  <title>Node.js Workshop Chat</title>
+  <title>Node.js Chat</title>
   <link rel="icon" href="/static/favicon_chat.png">
 
   <div id=nodejs_workshop_chat_header>
-    <h1 id=title>Node.js Workshop - Chat Exercise</h1>
+    <h1 id=title>Node.js Chat</h1>
   </div>
 
   <!-- Note that the index.css file is available by using 'express.static' function in server.js -->
@@ -22,18 +22,19 @@
 <body>
   <div id=general_information_center>
     <div id=logged_as_info></div>
-    <div id=num_users_online_log>
-      <div id=num_users_online_number_msg>Number of online users</div>
-      <div id=num_users_online_number> </div>
-    </div>
-    <ul id=logs_board></ul>
-    <ul id=username_is_typing_board>Who's typing:</ul>
+    <ul id=username_is_typing_board>
+      <h3>💭 Who's typing:</h3>
+    </ul>
+
+    <ul id=logs_board class=general_information_center_bottom></ul>
+    <div id=num_users_online_number class=general_information_center_bottom></div>
   </div>
 
   <div id=messages_center>
     <ul id="messages"></ul>
     <form id=message_form action="">
-      <input id="message_form_input" autocomplete="off" autofocus="autofocus" /><button>Send</button>
+      <input id="message_form_input" autocomplete="off" autofocus="autofocus" placeholder="Type a message" />
+      <button>Send 📡</button>
     </form>
   </div>
 

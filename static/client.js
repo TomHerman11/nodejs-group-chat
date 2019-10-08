@@ -16,23 +16,19 @@ $(function () {
     var socket = io();
 
     // -------------------------------------------------
-    //ask the user for their name and preferred color:
+    //ask the user for their name:
     (function () {
         let username = prompt("Please enter your username", "El Professor");
         if (!username) { username = "Anonymous_User"; }
 
-        let color = prompt("Please enter your color", "Blue");
-        if (!color) { color = "Black"; }
-
-        //save username and color also on the client's socket.
+        //save username also on the client's socket.
         socket.username = username;
-        socket.color = color;
 
-        //Let the socket at the server "know" the value of the username. Each client will have their own username and color.
-        socket.emit('usernameAndColor', [username, color]);
+        //Let the socket at the server "know" the value of the username. Each client will have their own username.
+        socket.emit('username', username);
 
         //Let the user see their nickname:
-        $("#logged_as_info").html(`Logged as: <strong style="color:` + color + `">` + username + `</strong>`);
+        $("#logged_as_info").html(`<h2>Logged as: <strong>` + username + `</strong></h2>`);
     })();
 
     // -------------------------------------------------
@@ -40,7 +36,7 @@ $(function () {
     socket.on('userConnected', (usernameThatJustConnected) => { //() => {} is a nameless function    
         const username_no_white_space = removeWhiteSpaceFromUsername(usernameThatJustConnected)
         const notification_id = username_no_white_space + '_joined_the_chat';
-        const join_log = `<li id=` + notification_id + `>❣️ <strong>` + usernameThatJustConnected + `</strong> has joined the chat!</li>`;
+        const join_log = `<li id=` + notification_id + `><h3>❣️ <strong>` + usernameThatJustConnected + `</strong> has joined the chat!</h3></li>`;
 
         //update the logs board:
         $('#logs_board').append(join_log);
@@ -57,7 +53,7 @@ $(function () {
     socket.on('userDisconnected', (usernameThatJustDisonnected) => { //() => {} is a nameless function    
         const username_no_white_space = removeWhiteSpaceFromUsername(usernameThatJustDisonnected)
         const notification_id = username_no_white_space + '_left_the_chat';
-        const left_log = `<li id=` + notification_id + `>🙃 <strong>` + usernameThatJustDisonnected + `</strong> has left the chat!</li>`;
+        const left_log = `<li id=` + notification_id + `><h3>🙃 <strong>` + usernameThatJustDisonnected + `</strong> has left the chat!</h3></li>`;
 
         //update the logs board:
         $('#logs_board').append(left_log);
@@ -72,7 +68,7 @@ $(function () {
     });
 
     socket.on('updateNumUsersOnline', (num_users_online) => {
-        $('#num_users_online_number').html(num_users_online);
+        $('#num_users_online_number').html('<h3>' + num_users_online + ' Users Online</h3>');
     });
 
     //on socket event of "addChatMessage(server->clients)", do the following: (add the value to the messages list)
