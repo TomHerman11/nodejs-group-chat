@@ -1,6 +1,9 @@
 # nodejs-chat
 ## Description
-Creating a chat room as part of our Node.js
+Creating a chat room, using Node.js & Socket.io
+<br/>
+<br/>
+
 ![Alt text](README_resources/Nodejs_Chat_Demo.png?raw=true "Node.js Chat Demo")
 
 
