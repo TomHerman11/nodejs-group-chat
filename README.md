@@ -1,6 +1,8 @@
-# nodejs-workshop-chat
+# nodejs-chat
 ## Description
-Creating a chat room as part of our Node.js Workshop
+Creating a chat room as part of our Node.js
+![Alt text](README_resources/Nodejs_Chat_Demo.png?raw=true "Node.js Chat Demo")
+
 
 <br/>
 
@@ -35,7 +37,6 @@ Creating a chat room as part of our Node.js Workshop
 
 
 #### Support User Names Within Chat
-![Support User Names Result](./README_resources/insert_user_name_colored.png)
 1. Edit client.js:
    - After we recieved the username from the user, and changed the div with ```id=logged_as_info```, we would like to add another property to our socket in the **server** side. Why the server side? so each time we will send a new message in our chat, we want to show all of the users who was the username that sent the message.
    
