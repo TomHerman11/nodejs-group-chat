@@ -1,6 +1,6 @@
-# nodejs-chat
+# nodejs-group-chat
 ## Description
-Creating a chat room, using Node.js & Socket.io
+Creating a group chat room, using Node.js & Socket.io
 <br/>
 <br/>
 
