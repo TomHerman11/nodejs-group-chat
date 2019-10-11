@@ -51,3 +51,20 @@ Creating a group chat room, using Node.js & Socket.io
    - Each user will have their own color.
    - Use functions of jQuery UI: Start with https://www.w3schools.com/jquery/jquery_slide.asp and continue from there.
 - Verify that each user has a unique name.
+- Security:
+   - use validator.js package for valid information from the clients.
+   - use crypto to encrypt data from clients <-> server.
+   - proper HTTP headers with helmet.js (should read more).
+   - use **sessionStorage** instead of ~~localStorage~~.
+   - Use https - should have SSL certificate. for free from **letsencrypt.org**
+   - Use 'express-rate-limit' to prevent DOS attack - how many requests in a period of time are allowed.
+   - Add CSRF protection - github.com/expressjs/csurf
+   - Cookies:
+      - Secure - pass cookie through https only.
+      - HttpOnly - prevent JavaScript use of cookies
+      - Domain - specific URL or path
+      - Expiry - when the cookie expires
+      - use github.com/pillar/cookies || github.com/expressjs/cookie-session
+   - OWASP dependency check
+   - Snyk - secutiry testing tool.
+   - Burp - secutiry testing tool.
